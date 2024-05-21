@@ -1,0 +1,45 @@
+<!-- Service Start -->
+<div class="container-fluid service py-6">
+    <div class="container">
+        <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+            <small
+                class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Our
+                Services</small>
+            <h1 class="display-5 mb-5">What We Offer</h1>
+        </div>
+        <section class="filters w-50 mx-auto text-center mb-5">
+            <input type="button" class="btn btn-primary mx-2 px-3 py-1" value="All" (click)="dataChange($event)" />
+            <input type="button" class="btn btn-primary mx-2 px-3 py-1" value="Catering" (click)="dataChange($event)" />
+            <input type="button" class="btn btn-primary mx-2 px-3 py-1" value="Event" (click)="dataChange($event)" />
+            <input type="button" class="btn btn-primary mx-2 px-3 py-1" value="Other" (click)="dataChange($event)" />
+        </section>
+
+        <section class="Search">
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6">
+                    <input type="search" id="Search" class="form-control mb-3" name="Search" placeholder="Search" (input)="getFullData($event)">
+                </div>
+            </div>
+        </section>
+        <div class="row g-4">
+            <ng-container *ngFor="let myVar of myData">
+                <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s" *ngIf="filterData === 'All' || filterData === myVar.category">
+                    <ng-container *ngIf="searchVal === 'All' || myVar.title.toLowerCase().includes(searchVal.toLowerCase())">
+                        <div class="bg-light rounded service-item">
+                            <div class="service-content d-flex align-items-center justify-content-center p-4">
+                                <div class="service-content-icon text-center">
+                                    <i class="fas {{myVar.className}} fa-7x text-primary mb-4"></i>
+                                    <h4 class="mb-3">{{myVar.title}}</h4>
+                                    <p class="mb-4">{{myVar.desc}}</p>
+                                    <a [href]="myVar.link" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
